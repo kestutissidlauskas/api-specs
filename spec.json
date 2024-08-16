@@ -47,7 +47,7 @@
       "post": {
         "operationId": "CreateAccount",
         "summary": "Create Account",
-        "description": "Creates a Physical Account. Physical accounts can be created for Individuals and Organisations. It accepts accountOwner type, account type and id as required body parameters. Nickname and salesProductId are optional parameter\n\n ### Example request body:\n```JSON\n{\n  \"type\": \"BAAS_PHYSICAL_ACCOUNT\",\n  \"accountOwner\": {\n    \"type\": \"INDIVIDUAL\",\n    \"id\": \"hkHcJybfBAKjZac5eiBAr\"\n  }\n}\n```\n\n### Example response body:\n```JSON\n{\n  \"id\": \"GB-040075-87654321\",\n  \"currency\": \"GBP\",\n  \"type\": \"BAAS_PHYSICAL_ACCOUNT\",\n  \"accountOwner\": {\n    \"type\": \"INDIVIDUAL\",\n    \"id\": \"hkHcJybfBAKjZac5eiBAr\"\n  }\n}\n```",
+        "description": "Creates a Physical Account. Physical accounts can be created for Individuals and Organisations. It accepts accountOwner type, account type and id as required body parameters. Nickname and salesProductId are optional parameters.\n\n ### Example request body:\n```JSON\n{\n  \"type\": \"BAAS_PHYSICAL_ACCOUNT\",\n  \"accountOwner\": {\n    \"type\": \"INDIVIDUAL\",\n    \"id\": \"hkHcJybfBAKjZac5eiBAr\"\n  }\n}\n```\n\n### Example response body:\n```JSON\n{\n  \"id\": \"GB-040075-87654321\",\n  \"currency\": \"GBP\",\n  \"type\": \"BAAS_PHYSICAL_ACCOUNT\",\n  \"accountOwner\": {\n    \"type\": \"INDIVIDUAL\",\n    \"id\": \"hkHcJybfBAKjZac5eiBAr\"\n  }\n}\n```",
         "parameters": [
           {
             "$ref": "#/components/parameters/JwsSignature"
