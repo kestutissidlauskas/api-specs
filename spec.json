@@ -1366,7 +1366,77 @@
         "tags": ["Virtual Account Management"]
       }
     },
-    
+    "/v2/virtual/accounts/{id}/close": {
+      "post": {
+        "operationId": "CloseVirtualAccount",
+        "summary": "Close Virtual Account",
+        "description": "Closes a Virtaul Account. This operation is only applicable to `VIRTUAL_ACCOUNT` type accounts.\n\n ### Example request body:\n```JSON\n{\n  \"closureReason\": \"CUST_INITIATED\",\n  \"recipient\": {\n    \"type\": \"UK\",\n    \"accountHolderName\": \"John Smith\",\n    \"sortCode\": \"123456\",\n    \"accountNumber\": \"12345678\"\n  }\n}\n```\n\n### Example response body:\n```JSON\n{\n  \"id\": \"GB-040075-87654321\",\n  \"type\": \"BAAS_PHYSICAL_ACCOUNT\",\n  \"status\": {\n    \"identifier\": \"CLOSED\",\n  }\n}\n```",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/AccountId"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/JwsSignature"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CloseVirtualAccountRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Account closed successfully",
+            "headers": {
+              "x-correlation-id": {
+                "description": "A unique identifier assigned to each request, facilitating issue tracing. In the event that a problem arises with a request, this ID can be provided to The Bank of London support team for assistance.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "2579248247516384065",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloseAccountResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        },
+        "tags": ["Virtual Account Management"]
+      }
+    },
     "/v2/virtual/transactions": {
       "get": {
         "operationId": "GetVirtualAccountTransactions",
