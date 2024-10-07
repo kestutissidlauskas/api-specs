@@ -1366,6 +1366,77 @@
         "tags": ["Virtual Account Management"]
       }
     },
+    "/v2/virtual/accounts/{id}/close": {
+      "post": {
+        "operationId": "CloseVirtualAccount",
+        "summary": "Close Virtual Account",
+        "description": "Closes a Virtaul Account. This operation is only applicable to `VIRTUAL_ACCOUNT` type accounts.\n\n ### Example request body:\n```JSON\n{\n  \"closureReason\": \"CUST_INITIATED\",\n  \"recipient\": {\n    \"type\": \"UK\",\n    \"accountHolderName\": \"John Smith\",\n    \"sortCode\": \"123456\",\n    \"accountNumber\": \"12345678\"\n  }\n}\n```\n\n### Example response body:\n```JSON\n{\n  \"id\": \"GB-040075-87654321\",\n  \"type\": \"BAAS_PHYSICAL_ACCOUNT\",\n  \"status\": {\n    \"identifier\": \"CLOSED\",\n  }\n}\n```",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/AccountId"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/JwsSignature"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CloseVirtualAccountRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Account closed successfully",
+            "headers": {
+              "x-correlation-id": {
+                "description": "A unique identifier assigned to each request, facilitating issue tracing. In the event that a problem arises with a request, this ID can be provided to The Bank of London support team for assistance.",
+                "schema": {
+                  "type": "string"
+                },
+                "example": "2579248247516384065",
+                "required": true
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloseAccountResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        },
+        "tags": ["Accounts"]
+      }
+    },
     "/v2/virtual/transactions": {
       "get": {
         "operationId": "GetVirtualAccountTransactions",
@@ -5079,6 +5150,29 @@
           }
         },
         "required": ["closureReason", "recipient"]
+      },
+      "CloseVirtualAccountRequest": {
+        "type": "object",
+        "title": "Close Virtual Account Request",
+        "description": "Request object that is required to close a virtual account",
+        "properties": {
+          "closureReason": {
+            "$ref": "#/components/schemas/PhysicalAccountClosureReason"
+          },
+          "recipient": {
+            "description": "Account details where the remaining balance of the\nclosed account, any pending interest or transactions (if applicable)\nwill be transferred to. The account must be within the same Virtual Account Hierarchy. It can be another VIRTUAL_ACCOUNT created in the same manner, or a VIRTUAL_SUSPENSE account. See GetVirtualAccounts with ?accountOwnership=DIRECT to find details of the VIRTUAL_SUSPENSE account. \n\n<span style=\"color:#f46d2a\">**Attention**</span> \\\nPlease note that the recipient is a oneOf object linked to the **type** in the object. \nCurrently `UK` is the only available oneOf object\nbut the **recipient** oneOf is extensible and new recipient types can be added in the future without a\nmajor version change. Please ensure this is factored into your\napplication code.\n\nRepresents the details of the payment recipient.\n",
+            "allOf": [
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/AccountIdentifierUk"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "required": ["recipient"]
       },
       "CloseAccountResponse": {
         "type": "object",
