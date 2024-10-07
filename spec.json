@@ -1434,7 +1434,7 @@
             "$ref": "#/components/responses/500"
           }
         },
-        "tags": ["Accounts"]
+        "tags": ["Virtual Account Management"]
       }
     },
     "/v2/virtual/transactions": {
