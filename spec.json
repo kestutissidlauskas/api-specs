@@ -5105,7 +5105,7 @@
       },
       "PhysicalAccountClosureReason": {
         "type": "string",
-        "description": "<span style=\"color:#f46d2a\">**Attention**</span> \\\nPlease note that the allowed values for the **type** are\nextensible and new can be added in the future without a\nmajor version change. Please ensure this is factored into your\napplication code.\n\nThe reason for the account cloosure. \\\n`CUST_INITIATED`: Customer initiated the closure of the account. \\\n`CUST_DECEASED`: Customer is deceased. \\\n`FRAUD_AML`: Account or customer linked to fraud. \\\n`ACCT_TRANSFER`: Account was transferred to another bank. \\\n",
+        "description": "<span style=\"color:#f46d2a\">**Attention**</span> \\\nPlease note that the allowed values for the **type** are\nextensible and new can be added in the future without a\nmajor version change. Please ensure this is factored into your\napplication code.\n\nThe reason for the account cloosure. \\\n`CUST_INITIATED`: Customer initiated the closure of the account. \\\n`CUST_DECEASED`: Customer is deceased. \\\n`FRAUD_AML`: Account or customer linked to fraud. \\\n`ACCT_TRANSFER`: Account was transferred to another bank. \n",
         "enum": ["CUST_INITIATED", "CUST_DECEASED", "FRAUD_AML", "ACCT_TRANSFER"]
       },
       "AccountIdentifierUk": {
