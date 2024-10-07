@@ -1370,7 +1370,7 @@
       "post": {
         "operationId": "CloseVirtualAccount",
         "summary": "Close Virtual Account",
-        "description": "Closes a Virtual Account. This operation is only applicable to `VIRTUAL_ACCOUNT` type accounts.\n\n ### Example request body:\n```JSON\n{\n  \"closureReason\": \"CUST_INITIATED\",\n  \"recipient\": {\n    \"type\": \"UK\",\n    \"accountHolderName\": \"John Smith\",\n    \"sortCode\": \"123456\",\n    \"accountNumber\": \"12345678\"\n  }\n}\n```\n\n### Example response body:\n```JSON\n{\n  \"id\": \"GB-040075-87654321\",\n  \"type\": \"BAAS_PHYSICAL_ACCOUNT\",\n  \"status\": {\n    \"identifier\": \"CLOSED\",\n  }\n}\n```",
+        "description": "Closes a Virtual Account. This operation is only applicable to `VIRTUAL_ACCOUNT` type accounts.\n\n ### Example request body:\n```JSON\n{\n  \"closureReason\": \"CUST_INITIATED\",\n  \"recipient\": {\n    \"type\": \"UK\",\n    \"accountHolderName\": \"John Smith\",\n    \"sortCode\": \"123456\",\n    \"accountNumber\": \"12345678\"\n  }\n}\n```\n\n### Example response body:\n```JSON\n{\n  \"id\": \"GB-040075-87654321\",\n  \"status\": {\n    \"identifier\": \"CLOSED\",\n  }\n}\n```",
         "parameters": [
           {
             "in": "path",
